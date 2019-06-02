@@ -1,0 +1,33 @@
+module ex01 where
+
+import prelude
+import pi
+import sigma
+import algstruct
+import category
+
+-- Category Theory by Steve Awodey
+-- Page 12. Example 12:
+-- ...
+-- Equivalently, a monoid is a category with just one object. The arrows of
+-- the category are the elements of the monoid. In particular, the identity
+-- arrow is the unit element u. Composition of arrows is the binary operation
+-- m * n of the monoid.
+
+data BoringMonoid=MkBoringMonoid
+
+monoidToCategoryEx01 (m : monoid) : category
+  = ( ( (MkBoringMonoid, \(bm1:BoringMonoid) -> \(bm2:BoringMonoid) -> m.1)
+      , ( \(bm:BoringMonoid) -> m.2.3
+        , \(bm1:BoringMonoid) -> \(bm2:BoringMonoid) -> \(bm3:BoringMonoid) -> m.2.1
+        , ( \(bm1:BoringMonoid) -> \(bm2:BoringMonoid) -> m.1.2
+          , _TODO_cPathL -- (cPathL : (x y : A) -> (f : hom x y) -> Path (hom x y) (c x x y (id x) f) f)
+          , _TODO_cPathR -- (cPathR : (x y : A) -> (f : hom x y) -> Path (hom x y) (c x y y f (id y)) f)
+          , _TODO_wtf -- ( (x y z w : A) -> (f : hom x y) -> (g : hom y z) -> (h : hom z w)
+                      --   -> Path (hom x w) (c x z w (c x y z f g) h) (c x y w f (c y z w g h)))
+          )
+        )
+      )
+    , _TODOIsCategory -- (A : cA C) -> isContr ((B : cA C) * iso C A B)
+    )
+
