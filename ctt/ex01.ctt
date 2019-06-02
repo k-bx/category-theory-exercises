@@ -14,10 +14,12 @@ import category
 -- arrow is the unit element u. Composition of arrows is the binary operation
 -- m * n of the monoid.
 
-data BoringMonoid=MkBoringMonoid
+data BoringMonoid = MkBoringMonoid
 
 monoidToCategoryEx01 (m : monoid) : category
-  = ( ( (MkBoringMonoid, \(bm1:BoringMonoid) -> \(bm2:BoringMonoid) -> m.1)
+  = ( ( ( BoringMonoid
+        , \(bm1:BoringMonoid) -> \(bm2:BoringMonoid) -> m.1
+        )
       , ( \(bm:BoringMonoid) -> m.2.3
         , \(bm1:BoringMonoid) -> \(bm2:BoringMonoid) -> \(bm3:BoringMonoid) -> m.2.1
         , ( \(bm1:BoringMonoid) -> \(bm2:BoringMonoid) -> m.1.2
