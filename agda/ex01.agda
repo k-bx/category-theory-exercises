@@ -3,6 +3,7 @@ module ex01 where
 
 -- open import IO
 open import Algebra
+open import Algebra.Structures
 open import Categories.Category
 open import Level
 
@@ -21,13 +22,13 @@ monoidToCategoryEx01 : {o ℓ e : Level} → (m : Monoid ℓ e) → Category o �
 monoidToCategoryEx01 {o} {ℓ} {e} m =
   record
     { Obj = BoringMonoid o
-    ; _⇒_ = λ bm1 bm2 -> Monoid.Carrier m
+    ; _⇒_ = λ bm1 bm2 → Monoid.Carrier m
     ; _≈_ = Monoid._≈_ m
     ; id = Monoid.ε m
     ; _∘_ = Monoid._∙_ m
-    ; assoc = {!!}
-    ; identityˡ = {!!}
-    ; identityʳ = {!!}
+    ; assoc = λ {A} {B} {C} {D} {f} {g} {h} → IsSemigroup.assoc (IsMonoid.isSemigroup (Monoid.isMonoid m)) h g f
+    ; identityˡ = λ {A} {B} {f} → IsMonoid.identityˡ (Monoid.isMonoid m) f
+    ; identityʳ = λ {A} {B} {f} → IsMonoid.identityʳ (Monoid.isMonoid m) f
     ; equiv = {!!}
     ; ∘-resp-≈ = {!!}
     }
