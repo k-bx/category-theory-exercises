@@ -19,9 +19,6 @@ open import Relation.Binary.Core
 record BoringMonoid (o : Level) : Set o where
   constructor MkBoringMonoid
 
-bmExample : {o : Level} -> BoringMonoid o
-bmExample = MkBoringMonoid
-
 monoidToCategoryEx01 : {o ℓ e : Level} → (m : Monoid ℓ e) → Category o ℓ e
 monoidToCategoryEx01 {o} {ℓ} {e} m =
   record
@@ -36,5 +33,8 @@ monoidToCategoryEx01 {o} {ℓ} {e} m =
     ; equiv = IsMagma.isEquivalence (IsSemigroup.isMagma (IsMonoid.isSemigroup (Monoid.isMonoid m)))
     ; ∘-resp-≈ = λ x₁ x₂ → IsMagma.∙-cong (IsSemigroup.isMagma (IsMonoid.isSemigroup (Monoid.isMonoid m))) x₁ x₂
     }
+
+bmExample : {o : Level} -> BoringMonoid o
+bmExample = MkBoringMonoid
 
 -- main = run (putStrLn "Hello, World!")

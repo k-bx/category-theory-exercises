@@ -18,18 +18,33 @@ data BoringMonoid = MkBoringMonoid
 
 monoidToCategoryEx01 (m : monoid) : category
   = ( ( ( BoringMonoid
-        , \(bm1:BoringMonoid) -> \(bm2:BoringMonoid) -> m.1
+        , \(bm1:BoringMonoid) -> \(bm2:BoringMonoid) -> m.1.1
         )
-      , ( \(bm:BoringMonoid) -> m.2.3
-        , \(bm1:BoringMonoid) -> \(bm2:BoringMonoid) -> \(bm3:BoringMonoid) -> m.2.1
-        , ( \(bm1:BoringMonoid) -> \(bm2:BoringMonoid) -> m.1.2
-          , _TODO_cPathL -- (cPathL : (x y : A) -> (f : hom x y) -> Path (hom x y) (c x x y (id x) f) f)
-          , _TODO_cPathR -- (cPathR : (x y : A) -> (f : hom x y) -> Path (hom x y) (c x y y f (id y)) f)
-          , _TODO_wtf -- ( (x y z w : A) -> (f : hom x y) -> (g : hom y z) -> (h : hom z w)
-                      --   -> Path (hom x w) (c x z w (c x y z f g) h) (c x y w f (c y z w g h)))
+      , ( \(x : BoringMonoid) -> m.2.2.2.1 -- monoid.ismonoid.id
+        , ? -- c : (x y z : A) -> hom x y -> hom y z -> hom x z
+        , ( ? -- homSet : (x y : A) -> set (hom x y)
+          , ? -- cPathL : (x y : A) -> (f : hom x y) -> Path (hom x y) (c x x y (id x) f) f
+          , ? -- cPathR : (x y : A) -> (f : hom x y) -> Path (hom x y) (c x y y f (id y)) f
+          , ? -- (x y z w : A) -> (f : hom x y) -> (g : hom y z) -> (h : hom z w) -> Path (hom x w) (c x z w (c x y z f g) h) (c x y w f (c y z w g h))
           )
         )
       )
-    , _TODOIsCategory -- (A : cA C) -> isContr ((B : cA C) * iso C A B)
+    , ? -- -- (A : cA C) -> isContr ((B : cA C) * iso C A B)
     )
+
+  -- = ( ( ( BoringMonoid
+  --       , \(bm1:BoringMonoid) -> \(bm2:BoringMonoid) -> m.1
+  --       )
+  --     , ( \(bm:BoringMonoid) -> m.2.3
+  --       , \(bm1:BoringMonoid) -> \(bm2:BoringMonoid) -> \(bm3:BoringMonoid) -> m.2.1
+  --       , ( \(bm1:BoringMonoid) -> \(bm2:BoringMonoid) -> m.1.2
+  --         , ?TODOcPathL -- (cPathL : (x y : A) -> (f : hom x y) -> Path (hom x y) (c x x y (id x) f) f)
+  --         , ?TODOcPathR -- (cPathR : (x y : A) -> (f : hom x y) -> Path (hom x y) (c x y y f (id y)) f)
+  --         , ?TODOwtf -- ( (x y z w : A) -> (f : hom x y) -> (g : hom y z) -> (h : hom z w)
+  --                    --   -> Path (hom x w) (c x z w (c x y z f g) h) (c x y w f (c y z w g h)))
+  --         )
+  --       )
+  --     )
+  --   , ?TODOIsCategory -- (A : cA C) -> isContr ((B : cA C) * iso C A B)
+  --   )
 
