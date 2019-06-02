@@ -18,7 +18,7 @@ bmExample = MkBoringMonoid
 -- Equivalently, a monoid is a category with just one object. The arrows of
 -- the category are the elements of the monoid. In particular, the identity
 -- arrow is the unit element u. Composition of arrows is the binary operation
--- m * n of the monoid.
+-- m ∙ n of the monoid.
 
 monoidToCategoryEx01 : {o ℓ e : Level} → ∀ {ml2} (m : Monoid ℓ ml2) → Category o ℓ e
 monoidToCategoryEx01 {o} {ℓ} {e} m =
@@ -27,7 +27,7 @@ monoidToCategoryEx01 {o} {ℓ} {e} m =
     ; _⇒_ = λ bm1 bm2 -> Monoid.Carrier m
     ; _≈_ = {!!}
     ; id = Monoid.ε m
-    ; _∘_ = {!!}
+    ; _∘_ = Monoid._∙_ m
     ; assoc = {!!}
     ; identityˡ = {!!}
     ; identityʳ = {!!}
