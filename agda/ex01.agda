@@ -34,7 +34,7 @@ monoidToCategoryEx01 {o} {ℓ} {e} m =
     ; identityˡ = λ {A} {B} {f} → IsMonoid.identityˡ (Monoid.isMonoid m) f
     ; identityʳ = λ {A} {B} {f} → IsMonoid.identityʳ (Monoid.isMonoid m) f
     ; equiv = IsMagma.isEquivalence (IsSemigroup.isMagma (IsMonoid.isSemigroup (Monoid.isMonoid m)))
-    ; ∘-resp-≈ = λ x x₁ → {!!}
+    ; ∘-resp-≈ = λ x₁ x₂ → IsMagma.∙-cong (IsSemigroup.isMagma (IsMonoid.isSemigroup (Monoid.isMonoid m))) x₁ x₂
     }
 
 -- main = run (putStrLn "Hello, World!")
