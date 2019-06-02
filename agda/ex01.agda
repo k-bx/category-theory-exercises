@@ -6,6 +6,7 @@ open import Algebra
 open import Algebra.Structures
 open import Categories.Category
 open import Level
+open import Relation.Binary.Core
 
 -- Category Theory by Steve Awodey
 -- Page 12. Example 12:
@@ -18,6 +19,9 @@ open import Level
 record BoringMonoid (o : Level) : Set o where
   constructor MkBoringMonoid
 
+bmExample : {o : Level} -> BoringMonoid o
+bmExample = MkBoringMonoid
+
 monoidToCategoryEx01 : {o ℓ e : Level} → (m : Monoid ℓ e) → Category o ℓ e
 monoidToCategoryEx01 {o} {ℓ} {e} m =
   record
@@ -29,11 +33,8 @@ monoidToCategoryEx01 {o} {ℓ} {e} m =
     ; assoc = λ {A} {B} {C} {D} {f} {g} {h} → IsSemigroup.assoc (IsMonoid.isSemigroup (Monoid.isMonoid m)) h g f
     ; identityˡ = λ {A} {B} {f} → IsMonoid.identityˡ (Monoid.isMonoid m) f
     ; identityʳ = λ {A} {B} {f} → IsMonoid.identityʳ (Monoid.isMonoid m) f
-    ; equiv = {!!}
-    ; ∘-resp-≈ = {!!}
+    ; equiv = IsMagma.isEquivalence (IsSemigroup.isMagma (IsMonoid.isSemigroup (Monoid.isMonoid m)))
+    ; ∘-resp-≈ = λ x x₁ → {!!}
     }
-
-bmExample : {o : Level} -> BoringMonoid o
-bmExample = MkBoringMonoid
 
 -- main = run (putStrLn "Hello, World!")
