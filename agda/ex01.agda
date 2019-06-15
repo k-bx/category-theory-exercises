@@ -8,7 +8,7 @@ open import Categories.Category
 open import Level
 open import Relation.Binary.Core
 
--- Category Theory by Steve Awodey
+-- | Category Theory by Steve Awodey
 -- Page 12. Example 12:
 -- ...
 -- Equivalently, a monoid is a category with just one object. The arrows of
