@@ -23,12 +23,12 @@ record AnyFiniteSetFunc (ℓ : Level) : Set ℓ where
   field
     func : (FiniteSet ℓ → FiniteSet ℓ)
 
-noninjCat : {o ℓ e : Level} → Category o ℓ e
-noninjCat {o} {ℓ} {e} =
+noninjCat : {o ℓ : Level} → Category o ℓ ℓ
+noninjCat {o} {ℓ} =
   record
     { Obj = FiniteSet o
     ; _⇒_ = λ _ _ → AnyFiniteSetFunc ℓ
-    ; _≈_ = λ x₂ x₁ → {!(_≡_) x₁ x₂!}
+    ; _≈_ = λ {A} {B} x₂ x₁ → x₁ ≡ x₂
     ; id = MkAnyFiniteSetFunc (\(el : FiniteSet ℓ) → el)
     ; _∘_ = λ f1 f2 →
             MkAnyFiniteSetFunc
