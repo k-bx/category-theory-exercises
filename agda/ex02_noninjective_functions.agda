@@ -12,6 +12,7 @@ open import Algebra.Structures
 open import Categories.Category
 open import Level
 open import Relation.Binary.Core
+open import Agda.Builtin.Equality
 
 data FiniteSet (o : Level) : Set o where
   MkFiniteSet1 : FiniteSet o
@@ -27,14 +28,14 @@ noninjCat {o} {ℓ} {e} =
   record
     { Obj = FiniteSet o
     ; _⇒_ = λ _ _ → AnyFiniteSetFunc ℓ
-    ; _≈_ = {!!}
+    ; _≈_ = λ x₂ x₁ → {!(_≡_) x₁ x₂!}
     ; id = MkAnyFiniteSetFunc (\(el : FiniteSet ℓ) → el)
     ; _∘_ = λ f1 f2 →
             MkAnyFiniteSetFunc
               ( AnyFiniteSetFunc.func f1
               ∘ AnyFiniteSetFunc.func f2
               )
-    ; assoc = {!!}
+    ; assoc = λ {A} {B} {C} {D} {f} {g} {h} → {!!}
     ; identityˡ = {!!}
     ; identityʳ = {!!}
     ; equiv = {!!}
