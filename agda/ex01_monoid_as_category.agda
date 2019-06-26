@@ -1,5 +1,5 @@
 {-# OPTIONS --without-K --safe #-}
-module ex01 where
+module ex01_monoid_as_category where
 
 -- open import IO
 open import Algebra

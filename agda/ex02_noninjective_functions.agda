@@ -6,13 +6,16 @@ module ex02_noninjective_functions where
 -- will confirm that non-injective functions work just as well.
 --
 
+import Relation.Binary.PropositionalEquality as Eq
+open Eq using (_≡_; refl)
+open Eq.≡-Reasoning using (begin_; _≡⟨⟩_; _∎)
 open import Algebra
 open import Function using (_∘_)
 open import Algebra.Structures
 open import Categories.Category
 open import Level
 open import Relation.Binary.Core
-open import Agda.Builtin.Equality
+--open import Agda.Builtin.Equality
 
 data FiniteSet (o : Level) : Set o where
   MkFiniteSet1 : FiniteSet o
@@ -35,9 +38,9 @@ noninjCat {o} {ℓ} =
               ( AnyFiniteSetFunc.func f1
               ∘ AnyFiniteSetFunc.func f2
               )
-    ; assoc = λ {A} {B} {C} {D} {f} {g} {h} → {!!}
-    ; identityˡ = {!!}
-    ; identityʳ = {!!}
-    ; equiv = {!!}
-    ; ∘-resp-≈ = {!!}
+    ; assoc = λ {A} {B} {C} {D} {f} {g} {h} → refl
+    ; identityˡ = refl
+    ; identityʳ = refl
+    ; equiv = λ {A} {B} → record { refl = refl ; sym = λ {i} {j} x → {!Eq.cong AnyFiniteSetFunc.func x!} ; trans = λ x x₁ → {!!} }
+    ; ∘-resp-≈ = λ x x₁ → {!!}
     }
