@@ -7,7 +7,7 @@ module ex02_noninjective_functions where
 --
 
 import Relation.Binary.PropositionalEquality as Eq
-open Eq using (_≡_; refl)
+open Eq using (_≡_; refl; cong; sym; trans)
 open Eq.≡-Reasoning using (begin_; _≡⟨⟩_; _∎)
 open import Algebra
 open import Function using (_∘_)
@@ -41,6 +41,9 @@ noninjCat {o} {ℓ} =
     ; assoc = λ {A} {B} {C} {D} {f} {g} {h} → refl
     ; identityˡ = refl
     ; identityʳ = refl
-    ; equiv = λ {A} {B} → record { refl = refl ; sym = λ {i} {j} x → {!Eq.cong AnyFiniteSetFunc.func x!} ; trans = λ x x₁ → {!!} }
-    ; ∘-resp-≈ = λ x x₁ → {!!}
+    ; equiv = λ {A} {B} → record { refl = refl ; sym = λ x → sym x ; trans = λ x₂ x₁ → trans x₁ x₂ }
+    ; ∘-resp-≈ = λ x₂ x₁ →
+        let x₁f = cong AnyFiniteSetFunc.func x₁
+            x₂f = cong AnyFiniteSetFunc.func x₂
+        in {!!}
     }
