@@ -26,6 +26,20 @@ record AnyFiniteSetFunc (ℓ : Level) : Set ℓ where
   field
     func : (FiniteSet ℓ → FiniteSet ℓ)
 
+∘-resp-≈-hole₁ : (ℓ₁ : Level)
+       → (d : AnyFiniteSetFunc ℓ₁)
+       → (e : AnyFiniteSetFunc ℓ₁)
+       → (f : AnyFiniteSetFunc ℓ₁)
+       → (g : AnyFiniteSetFunc ℓ₁)
+       → (λ x → AnyFiniteSetFunc.func d (AnyFiniteSetFunc.func g x))
+          ≡
+          (λ x → AnyFiniteSetFunc.func d (AnyFiniteSetFunc.func f x))
+       → (x₂ : e ≡ d)
+       → MkAnyFiniteSetFunc (λ x → AnyFiniteSetFunc.func e (AnyFiniteSetFunc.func g x))
+          ≡
+          MkAnyFiniteSetFunc (λ x → AnyFiniteSetFunc.func d (AnyFiniteSetFunc.func f x))
+∘-resp-≈-hole₁ ℓ₁ d e f g xf₁ x₂ rewrite sym x₂ = cong MkAnyFiniteSetFunc xf₁
+
 noninjCat : {o ℓ : Level} → Category o ℓ ℓ
 noninjCat {o} {ℓ} =
   record
@@ -42,8 +56,9 @@ noninjCat {o} {ℓ} =
     ; identityˡ = refl
     ; identityʳ = refl
     ; equiv = λ {A} {B} → record { refl = refl ; sym = λ x → sym x ; trans = λ x₂ x₁ → trans x₁ x₂ }
-    ; ∘-resp-≈ = λ x₂ x₁ →
+    ; ∘-resp-≈ = λ {a} {b} {c} {d} {e} {f} {g} x₂ x₁ →
         let x₁f = cong AnyFiniteSetFunc.func x₁
             x₂f = cong AnyFiniteSetFunc.func x₂
-        in {!!}
+            xf₁ = cong (AnyFiniteSetFunc.func d ∘_) x₁f
+        in ∘-resp-≈-hole₁ ℓ d e f g xf₁ x₂
     }
